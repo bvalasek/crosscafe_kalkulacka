@@ -13,8 +13,10 @@ var txtWelcome = document.getElementById("txtWelcome")
 ,   pDealerBase = document.getElementById("dealerBase")
 ,   pNotificationBar = document.getElementById("notificationBar")
 
-var undefinedVal = -1;
-var valueStore = [undefinedVal, undefinedVal];
+//var undefinedVal = -1;
+//var valueStore = [undefinedVal, undefinedVal];
+var value;
+var isOperationSelected = false;
 
 
 btn_val_0.addEventListener('click', numberClicked (0));
@@ -36,16 +38,19 @@ btn_op_divide.addEventListener('click', operationClicked ('/'));
 btn_op_divide.addEventListener('click', resultClicked ());
 
 
+// ----------------------
+// Functions 
+// ----------------------
 
-function numberClicked ( value ) {
+function numberClicked ( val ) {
 
-    if ( valueStore[0] == undefinedVal ) {
-        valueStore[0] = value;
-        valueStore[1] = undefinedVal;
+    if ( !isOperationSelected) {
+        value = val;
     }
     else {
-        valueStore[1] = value;
+        
     }
+    
 }
 
 
