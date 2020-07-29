@@ -25,11 +25,12 @@ btn_val_8.addEventListener('click', function () {numberClicked (8)}, false);
 btn_val_9.addEventListener('click', function () {numberClicked (9)}, false);
 
 btn_op_plus.addEventListener('click', function () {operationPlusClicked ()}, false);
-btn_op_minus.addEventListener('click', function () {operationClicked ('-')}, false);
-btn_op_multiply.addEventListener('click', function () {operationClicked ('*')}, false);
-btn_op_divide.addEventListener('click', function () {operationClicked ('/')}, false);
+btn_op_minus.addEventListener('click', function () {operationMinusClicked ()}, false);
+btn_op_multiply.addEventListener('click', function () {operationMultiplyClicked ()}, false);
+btn_op_divide.addEventListener('click', function () {operationDivideClicked ()}, false);
 
-btn_op_divide.addEventListener('click', function () {resultClicked ()}, false);
+btn_result.addEventListener('click', function () {resultClicked ()}, false);
+btn_clear.addEventListener('click', function () {resultClear ()}, false);
 
 
 // ----------------------
@@ -62,20 +63,66 @@ function numberClicked ( val ) {
 }
 
 
+//-------------------------------------------
+
+
+
+//-------------------------------------------
+var previousNumber,//last number is stored
+    selectedOperator,//store last selected operator, false if none or if pressed C
+    currentNumber;//get new number from html element "txt_display"
+function clearDisplay (){
+    document.getElementById("txt_display").innerHTML = 0;
+}
+
 
 function operationPlusClicked () {
-
-
+    previousNumber = txt_display.innerHTML;
+    selectedOperator = '+';
+    //alert (previousNumber +' and '+ selectedOperator);
+    clearDisplay();
 }
 
-
-function operationClicked (val) {
-
-
+function operationMinusClicked () {
+    previousNumber = txt_display.innerHTML;
+    selectedOperator = '-';
+    //alert (previousNumber + selectedOperator);
+    clearDisplay();
 }
 
-
-
-function resultClicked () {
-
+function operationMultiplyClicked () {
+    previousNumber = txt_display.innerHTML;
+    selectedOperator = '*';
+    //alert (previousNumber +' and '+ selectedOperator);
+    clearDisplay();
 }
+
+function operationDivideClicked () {
+    previousNumber = txt_display.innerHTML;
+    selectedOperator = '/';
+    //alert (previousNumber +' and '+ selectedOperator);
+    clearDisplay();
+}
+
+function resultClicked () {    
+    currentNumber = txt_display.innerHTML;
+    
+    if (selectedOperator == '+'){
+        previousNumber = parseInt(previousNumber) + parseInt(currentNumber);
+    }
+    else if (selectedOperator == '-'){
+        previousNumber = parseInt(previousNumber) - parseInt(currentNumber);
+    }
+    else if (selectedOperator == '*'){
+        previousNumber = parseInt(previousNumber) * parseInt(currentNumber);
+    }
+    else if (selectedOperator == '/'){
+        previousNumber = parseInt(previousNumber) / parseInt(currentNumber);
+    }
+    document.getElementById("txt_display").innerHTML = previousNumber;
+}
+
+function resultClear(){
+    clearDisplay();
+}
+
